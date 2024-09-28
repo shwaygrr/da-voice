@@ -1,17 +1,33 @@
-const Representative = (params) => {
+import { useLocation, Link } from "react-router-dom";
+
+const Representative = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+
+  const params = {
+    name: queryParams.get("name"),
+    position: queryParams.get("position"),
+    party: queryParams.get("party"),
+    website: queryParams.get("website"),
+    phone: queryParams.get("phone"),
+    address: queryParams.get("address"),
+  };
+
   return (
     <div className="repres">
-      <h1>Testing</h1>
-      {/* <h1>{params.name}</h1>
+      <Link to="/" className="back">
+        Back
+      </Link>
+      <h1>{params.name}</h1>
       <h2>{params.position}</h2>
       <h2>{params.party}</h2>
-      {params.image ? (
-        <img src={params.image} alt="Picture of Representative" />
-      ) : null}
-      <a href={params.website}>Website</a>
+
+      <a href={params.website}>
+        <p>Website</p>
+      </a>
       <p>{params.phone}</p>
       <h2>Address</h2>
-      <p>{params.address}</p> */}
+      <p>{params.address}</p>
     </div>
   );
 };
