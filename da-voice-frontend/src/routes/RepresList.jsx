@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
 import RepresListItem from "../components/RepresListItem";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const RepresList = () => {
+  const { location, zipcode, error } = useLocation();
+
   const [reps, setReps] = useState(null);
 
-  const address = "33027";
-  const API_KEY = import.meta.env.VITE_CIVIC_API_KEY;
-
-  const URL =
-    "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=" +
-    address +
-    "&key=" +
-    API_KEY;
-
   useEffect(() => {
+    const address = zipcode;
+    const API_KEY = import.meta.env.VITE_CIVIC_API_KEY;
+
+    const URL =
+      "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=" +
+      address +
+      "&key=" +
+      API_KEY;
+
+    console.log(address, "ADDRESS");
+
     const fetchData = async () => {
       try {
         const response = await fetch(URL);
@@ -27,8 +32,6 @@ const RepresList = () => {
         const temp = offices.map((office) => {
           const officialsData = office.officialIndices.map((index) => {
             const official = officials[index];
-            console.log(official.photoUrl);
-
             return official
               ? {
                   name: official.name,

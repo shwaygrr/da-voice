@@ -5,9 +5,8 @@ import { Outlet } from "react-router-dom";
 import MapComponent from "../components/MapComponent";
 
 const Layout = () => {
-  const { zipcode, setZipcode } = useLocation();
+  const { location, zipcode, error } = useLocation();
 
-  
   return (
     <div className="flex flex-col h-screen">
       <nav className="bg-gray-800">
@@ -37,7 +36,13 @@ const Layout = () => {
               </Link>
             </div>
             <div className="hidden sm:block text-gray-300">
-              {zipcode}
+              {location.lat ? (
+                <p className="text-sm">{zipcode}</p>
+              ) : (
+                <p className="text-sm">
+                  {error ? error : "Loading location..."}
+                </p>
+              )}
             </div>
           </div>
         </div>

@@ -20,7 +20,8 @@ const LocationProvider = ({ children }) => {
       }
     } catch (err) {
       console.error("Error in reverse geocoding:", err);
-      setZipcode("Error fetching zipcode");
+      // setZipcode("Error fetching zipcode");
+      setZipcode("10001");
     }
   };
 

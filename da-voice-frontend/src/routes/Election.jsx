@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
+import { useLocation } from "../contexts/location";
+
 const Election = () => {
   const { id } = useParams();
   const [election, setElection] = useState(null);
+  const { location, zipcode, error } = useLocation();
+
   useEffect(() => {
     const API_KEY = import.meta.env.VITE_CIVIC_API_KEY;
-    const address = "33027";
+    const address = zipcode;
     const URL =
       "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=" +
       address +
