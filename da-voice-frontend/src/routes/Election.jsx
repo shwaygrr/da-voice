@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const Election = () => {
   const { id } = useParams();
@@ -35,16 +36,17 @@ const Election = () => {
       {election ? (
         <div>
           <Link to="/elections" className="back">
-            Back
+            <IoMdArrowRoundBack />
           </Link>
-          <h1>{election.election.name}</h1>
-          <h2>{election.election.electionDay}</h2>
-          <h2>Important Links</h2>
+          <h1 className="text-3xl font-bold mb-4 pt-2">{election.election.name}</h1>
+          <h2 className="text-lg mb-2">{election.election.electionDay}</h2>
+          <h2 className="text-lg font-semibold">Important Links</h2>
           <a
             href={
               election.state[0].electionAdministrationBody
                 .electionRegistrationUrl
             }
+            className="block text-blue-500 hover:underline"
           >
             <p>Register Here</p>
           </a>
@@ -54,11 +56,12 @@ const Election = () => {
               election.state[0].electionAdministrationBody
                 .votingLocationFinderUrl
             }
+            className="block text-blue-500 hover:underline"
           >
             <p>Voting Locations</p>
           </a>
 
-          <a href={election.state[0].electionAdministrationBody.ballotInfoUrl}>
+          <a href={election.state[0].electionAdministrationBody.ballotInfoUrl} className="block text-blue-500 hover:underline">
             <p>Ballot Info</p>
           </a>
         </div>
