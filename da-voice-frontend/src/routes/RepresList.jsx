@@ -4,13 +4,8 @@ import { Link } from "react-router-dom";
 const RepresList = () => {
   const [reps, setReps] = useState(null);
 
-  const address = "1930 SW 145th Ave, Miramar, FL 33027";
+  const address = "33027";
   const API_KEY = import.meta.env.VITE_CIVIC_API_KEY;
-  // const URL =
-  // "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=" +
-  // address +
-  // "&levels=country&key=" +
-  // API_KEY;
 
   const URL =
     "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=" +

@@ -67,19 +67,19 @@ const Layout = () => {
                     to="/"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
-                    Home
+                    Representatives
                   </Link>
                   <Link
-                    to="/about"
+                    to="/elections"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
-                    About
+                    Elections
                   </Link>
                   <Link
                     to="/services"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
-                    Services
+                    More Information
                   </Link>
                   <Link
                     to="/contact"
@@ -96,7 +96,9 @@ const Layout = () => {
                   Lat: {location.lat}, Lon: {location.lon}
                 </p>
               ) : (
-                <p className="text-sm">{error ? error : "Loading location..."}</p>
+                <p className="text-sm">
+                  {error ? error : "Loading location..."}
+                </p>
               )}
             </div>
           </div>
