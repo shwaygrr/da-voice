@@ -1,56 +1,96 @@
 import { useEffect, useState } from "react";
 import RepresListItem from "../components/RepresListItem";
-
+import { Link } from "react-router-dom";
 const RepresList = () => {
-  // const [reps, setReps] = useState(null);
+  const [reps, setReps] = useState(null);
 
-  // const address = "1616 18th Ave N, Lake Worth Beach, FL 33460";
-  // const API_KEY = process.env.NEXT_PUBLIC_CIVIC_API_KEY;
+  const address = "1930 SW 145th Ave, Miramar, FL 33027";
+  const API_KEY = import.meta.env.VITE_CIVIC_API_KEY;
   // const URL =
-  //   "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=" +
-  //   address +
-  //   "&levels=administrativeArea2&key=" +
-  //   API_KEY;
+  // "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=" +
+  // address +
+  // "&levels=country&key=" +
+  // API_KEY;
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await fetch(URL);
-  //     const data = await response.json();
-  //     const offices = data.offices;
-  //     const officials = data.officials;
+  const URL =
+    "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=" +
+    address +
+    "&key=" +
+    API_KEY;
 
-  //     const temp = officials.map((official, index) => {
-  //       return {
-  //         name: official.name,
-  //         position: offices[index].name,
-  //         party: official.party ? official.party : "No party provided",
-  //         photo: official.photoUrl ? official.photoUrl : "",
-  //         phone: official.phones[0]
-  //           ? official.phones[0]
-  //           : "No phone number provided",
-  //         website: official.urls[0] ? official.urls[0] : "No website provided",
-  //         address: official.address
-  //           ? `${official.address[0].line1}, ${official.address[0].city}, ${official.address[0].state}, ${official.address[0].zip}`
-  //           : "No address provided",
-  //       };
-  //     });
-  //     setReps(temp);
-  //   };
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(URL);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        const offices = data.offices;
+        const officials = data.officials;
+
+        const temp = offices.map((office) => {
+          const officialsData = office.officialIndices.map((index) => {
+            const official = officials[index];
+            console.log(official.photoUrl);
+
+            return official
+              ? {
+                  name: official.name,
+                  position: office.name,
+                  party: official.party || "No party provided",
+                  phone: official.phones[0] || "No phone number provided",
+                  website: official.urls[0] || "No website provided",
+                  address: official.address
+                    ? `${official.address[0].line1}, ${official.address[0].city}, ${official.address[0].state}, ${official.address[0].zip}`
+                    : "No address provided",
+                }
+              : {
+                  name: "Unknown",
+                  position: office.name,
+                  party: "No party provided",
+                  phone: "No phone number provided",
+                  website: "No website provided",
+                  address: "No address provided",
+                };
+          });
+
+          return officialsData;
+        });
+
+        const flattenedReps = temp.flat();
+        setReps(flattenedReps);
+      } catch (error) {
+        console.error("Failed to fetch representatives:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="represList">
       <h1>List of Representatives</h1>
-      {/* {reps
-        ? reps.map((rep, index) => (
-            <RepresListItem
-              key={index}
-              name={rep.name}
-              position={rep.position}
-            />
+      {reps
+        ? reps.map((rep) => (
+            <Link
+              key={rep.id}
+              to={`/representatives?name=${encodeURIComponent(
+                rep.name
+              )}&position=${encodeURIComponent(
+                rep.position
+              )}&party=${encodeURIComponent(
+                rep.party
+              )}&website=${encodeURIComponent(
+                rep.website
+              )}&phone=${encodeURIComponent(
+                rep.phone
+              )}&address=${encodeURIComponent(rep.address)}`}
+            >
+              <RepresListItem name={rep.name} position={rep.position} />
+            </Link>
           ))
-        : null} */}
+        : null}
     </div>
   );
 };
