@@ -4,7 +4,15 @@ import { Outlet } from "react-router-dom";
 import MapComponent from "../components/MapComponent";
 
 const Layout = () => {
-  const { location, zipcode, error } = useLocation();
+  const { location, zipcode, error, setZipcode } = useLocation();
+
+
+  const handleZipcodeChange = (e) => {
+    const newZipcode = e.target.value;
+    if (newZipcode.length <= 5) {
+      setZipcode(newZipcode);
+    }
+  };
 
   return (
     <div className="flex flex-col h-screen">
@@ -41,7 +49,7 @@ const Layout = () => {
               <label className="text-white">Zip Code: </label>
               <input 
                 value={zipcode} 
-                onChange={(e) => setZipcode(prevZip => prevZip.length() === 5 ? e.target.value : prevZip)} 
+                onChange={handleZipcodeChange}
                 placeholder="Enter Zip Code" 
                 className="px-1 rounded-sm"
               />
