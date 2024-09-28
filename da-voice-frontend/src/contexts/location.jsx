@@ -4,7 +4,7 @@ const LocationContext = createContext();
 
 const LocationProvider = ({ children }) => {
   const [location, setLocation] = useState({ lat: null, lon: null });
-  const [zipcode, setZipcode] = useState(null);
+  const [zipcode, setZipcode] = useState("");
   const [error, setError] = useState(null);
   const hasFetchedLocation = useRef(false); // Ref to track if we have already fetched location
 
@@ -23,11 +23,16 @@ const LocationProvider = ({ children }) => {
       }
     } catch (err) {
       console.error("Error in reverse geocoding:", err);
+<<<<<<< HEAD
       setZipcode("10001"); // Fallback zipcode
+=======
+      setZipcode("10001");
+>>>>>>> babe221 (zip code fix)
     }
   };
 
   useEffect(() => {
+<<<<<<< HEAD
     if (!hasFetchedLocation.current) {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -47,11 +52,30 @@ const LocationProvider = ({ children }) => {
         setError("Geolocation is not supported by this browser.");
         console.error("Geolocation is not supported by this browser.");
       }
+=======
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          setLocation({ lat, lon });
+
+          getZipcode(lat, lon);
+        },
+        (err) => {
+          setError(err.message);
+          console.error("Error getting location:", err);
+        }
+      );
+    } else {
+      setError("Geolocation is not supported by this browser.");
+      console.error("Geolocation is not supported by this browser.");
+>>>>>>> babe221 (zip code fix)
     }
   }, []);
 
   return (
-    <LocationContext.Provider value={{ location, zipcode, error }}>
+    <LocationContext.Provider value={{ location, zipcode, setZipcode, error }}>
       {children}
     </LocationContext.Provider>
   );
