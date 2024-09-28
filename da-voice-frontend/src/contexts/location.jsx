@@ -6,10 +6,8 @@ const LocationProvider = ({ children }) => {
   const [location, setLocation] = useState({ lat: null, lon: null });
   const [zipcode, setZipcode] = useState("");
   const [error, setError] = useState(null);
-  const hasFetchedLocation = useRef(false); // Ref to track if we have already fetched location
 
   const getZipcode = async (lat, lon) => {
-    if (zipcode) return; // Prevent fetching if zipcode is already set
 
     try {
       const response = await fetch(
@@ -23,7 +21,6 @@ const LocationProvider = ({ children }) => {
       }
     } catch (err) {
       console.error("Error in reverse geocoding:", err);
-      setZipcode("10001");
     }
   };
 
@@ -46,7 +43,7 @@ const LocationProvider = ({ children }) => {
       setError("Geolocation is not supported by this browser.");
       console.error("Geolocation is not supported by this browser.");
     }
-  }, []);
+  }, [navigator]);
 
   console.log(zipcode)
 
