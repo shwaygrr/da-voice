@@ -20,7 +20,7 @@ const ElectionList = () => {
   }, []);
   return (
     <div>
-      <h1>Upcoming Elections</h1>
+      <h1 className="text-2xl font-bold mb-4">Upcoming Elections</h1>
 
       {elections
         ? elections.map((election) => (
@@ -31,7 +31,7 @@ const ElectionList = () => {
               />
             </Link>
           ))
-        : null}
+        : <p className="text-gray-600">No elections available.</p>}
     </div>
   );
 };

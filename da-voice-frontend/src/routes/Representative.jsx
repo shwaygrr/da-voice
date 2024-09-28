@@ -1,4 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
+import { IoMdArrowRoundBack } from "react-icons/io";
+
 
 const Representative = () => {
   const location = useLocation();
@@ -16,17 +18,17 @@ const Representative = () => {
   return (
     <div className="repres">
       <Link to="/" className="back">
-        Back
+        <IoMdArrowRoundBack />
       </Link>
-      <h1>{params.name}</h1>
-      <h2>{params.position}</h2>
-      <h2>{params.party}</h2>
+      <h1 className="text-3xl font-bold mb-4 pt-2">{params.name}</h1>
+      <h2 className="text-lg mb-2">{params.position}</h2>
+      <h2 className="text-lg mb-2">{params.party}</h2>
 
-      <a href={params.website}>
+      <a href={params.website} className="block text-blue-500 hover:underline">
         <p>Website</p>
       </a>
-      <p>{params.phone}</p>
-      <h2>Address</h2>
+      <p className="mt-2">{params.phone}</p>
+      <h2 className="text-lg font-semibold mt-4">Address</h2>
       <p>{params.address}</p>
     </div>
   );

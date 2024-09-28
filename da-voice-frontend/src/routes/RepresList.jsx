@@ -63,7 +63,7 @@ const RepresList = () => {
 
   return (
     <div className="represList">
-      <h1>List of Representatives</h1>
+      <h1 className="text-2xl font-bold mb-4">List of Representatives</h1>
       {reps
         ? reps.map((rep) => (
             <Link
@@ -83,7 +83,7 @@ const RepresList = () => {
               <RepresListItem name={rep.name} position={rep.position} />
             </Link>
           ))
-        : null}
+        : <p className="text-gray-600">No representatives available.</p>}
     </div>
   );
 };
