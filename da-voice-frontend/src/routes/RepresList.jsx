@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import RepresListItem from "../components/RepresListItem";
 import { Link } from "react-router-dom";
-import { useLocation } from "../contexts/location";
 const RepresList = () => {
-  const { location, zipcode, error } = useLocation();
-
   const [reps, setReps] = useState(null);
 
   useEffect(() => {
-    const address = zipcode;
+    const address = "10001";
     const API_KEY = import.meta.env.VITE_CIVIC_API_KEY;
 
     const URL =
@@ -62,7 +59,7 @@ const RepresList = () => {
     };
 
     fetchData();
-  }, [zipcode]);
+  }, []);
 
   return (
     <div className="represList">
