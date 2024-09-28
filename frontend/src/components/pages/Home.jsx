@@ -1,6 +1,7 @@
 "use client"
 
 import { useLocation } from "@/contexts/location"
+import Navbar from "../Navbar"
 
 const Home = () => {
   const { location, error } = useLocation()
@@ -8,13 +9,7 @@ const Home = () => {
 
   return (
       <div>
-        <nav className="h-24 w-full bg-green-100">
-          <ul>
-            <li>{lng}, {lat}</li>
-            <li>Route 1</li>
-            <li>Route 2</li>
-          </ul>
-        </nav>
+        <Navbar />
       </div>
   )
 }
