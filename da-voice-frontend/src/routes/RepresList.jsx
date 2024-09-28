@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import RepresListItem from "../components/RepresListItem";
 import { Link } from "react-router-dom";
+import { useLocation } from "../contexts/location";
 const RepresList = () => {
   const [reps, setReps] = useState(null);
+  const { zipcode } = useLocation()
 
   useEffect(() => {
-    const address = "10001";
     const API_KEY = import.meta.env.VITE_CIVIC_API_KEY;
 
     const URL =
       "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=" +
-      address +
+      zipcode +
       "&key=" +
       API_KEY;
 
@@ -59,7 +60,7 @@ const RepresList = () => {
     };
 
     fetchData();
-  }, []);
+  }, [zipcode]);
 
   return (
     <div className="represList">

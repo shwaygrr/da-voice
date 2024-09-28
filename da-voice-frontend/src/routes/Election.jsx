@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { useLocation } from "../contexts/location";
 
 const Election = () => {
   const { id } = useParams();
   const [election, setElection] = useState(null);
+  const { zipcode } = useLocation()
+
   useEffect(() => {
     const API_KEY = import.meta.env.VITE_CIVIC_API_KEY;
-    const address = "10001";
     const URL =
       "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=" +
-      address +
+      zipcode +
       "&electionId=" +
       id +
       "&productionDataOnly=true&returnAllAvailableData=true&key=" +
