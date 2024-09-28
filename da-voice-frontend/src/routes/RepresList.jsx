@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import RepresListItem from "../components/RepresListItem";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "../contexts/location";
 const RepresList = () => {
   const { location, zipcode, error } = useLocation();
 
@@ -16,8 +16,6 @@ const RepresList = () => {
       address +
       "&key=" +
       API_KEY;
-
-    console.log(address, "ADDRESS");
 
     const fetchData = async () => {
       try {
@@ -64,7 +62,7 @@ const RepresList = () => {
     };
 
     fetchData();
-  }, []);
+  }, [zipcode]);
 
   return (
     <div className="represList">

@@ -20,19 +20,23 @@ const Election = () => {
       API_KEY;
 
     const fetchData = async () => {
-      const response = await fetch(URL);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+      try {
+        const response = await fetch(URL);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setElection(data);
+      } catch (error) {
+        console.error(error);
       }
-      const data = await response.json();
-      setElection(data);
     };
     fetchData();
-  }, []);
+  }, [id, zipcode]);
 
   return (
     <div>
-      {election ? (
+      {election && zipcode ? (
         <div>
           <Link to="/elections" className="back">
             Back
