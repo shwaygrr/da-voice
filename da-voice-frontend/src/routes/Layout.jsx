@@ -1,4 +1,3 @@
-import { useState, useEffect, useContext, createContext } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "../contexts/location";
 import { Outlet } from "react-router-dom";
@@ -35,14 +34,17 @@ const Layout = () => {
                 Resources
               </Link>
             </div>
-            <div className="hidden sm:block text-gray-300">
-              {location.lat ? (
-                <p className="text-sm">{zipcode}</p>
-              ) : (
-                <p className="text-sm">
-                  {error ? error : "Loading location..."}
-                </p>
-              )}
+            {/* <div className="hidden sm:block text-gray-300">
+              {zipcode}
+            </div> */}
+            <div>
+              <label className="text-white">Zip Code: </label>
+              <input 
+                value={zipcode} 
+                onChange={(e) => setZipcode(prevZip => prevZip.length() === 5 ? e.target.value : prevZip)} 
+                placeholder="Enter Zip Code" 
+                className="px-1 rounded-sm"
+              />
             </div>
           </div>
         </div>

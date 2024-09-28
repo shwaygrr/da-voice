@@ -4,7 +4,7 @@ const LocationContext = createContext();
 
 const LocationProvider = ({ children }) => {
   const [location, setLocation] = useState({ lat: null, lon: null });
-  const [zipcode, setZipcode] = useState(null);
+  const [zipcode, setZipcode] = useState(""); // Add zipcode state
   const [error, setError] = useState(null);
   const hasFetchedLocation = useRef(false); // Ref to track if we have already fetched location
 
@@ -51,7 +51,7 @@ const LocationProvider = ({ children }) => {
   }, []);
 
   return (
-    <LocationContext.Provider value={{ location, zipcode, error }}>
+    <LocationContext.Provider value={{ location, zipcode, setZipcode, error }}>
       {children}
     </LocationContext.Provider>
   );
