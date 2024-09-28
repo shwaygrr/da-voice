@@ -28,27 +28,27 @@ const LocationProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (!hasFetchedLocation.current) {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            setLocation({ lat, lon });
-            hasFetchedLocation.current = true; // Set to true after fetching location
-            getZipcode(lat, lon);
-          },
-          (err) => {
-            setError(err.message);
-            console.error("Error getting location:", err);
-          }
-        );
-      } else {
-        setError("Geolocation is not supported by this browser.");
-        console.error("Geolocation is not supported by this browser.");
-      }
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          setLocation({ lat, lon });
+
+          getZipcode(lat, lon);
+        },
+        (err) => {
+          setError(err.message);
+          console.error("Error getting location:", err);
+        }
+      );
+    } else {
+      setError("Geolocation is not supported by this browser.");
+      console.error("Geolocation is not supported by this browser.");
     }
   }, []);
+
+  console.log(zipcode)
 
   return (
     <LocationContext.Provider value={{ location, zipcode, setZipcode, error }}>
