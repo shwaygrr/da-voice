@@ -23,16 +23,11 @@ const LocationProvider = ({ children }) => {
       }
     } catch (err) {
       console.error("Error in reverse geocoding:", err);
-<<<<<<< HEAD
-      setZipcode("10001"); // Fallback zipcode
-=======
       setZipcode("10001");
->>>>>>> babe221 (zip code fix)
     }
   };
 
   useEffect(() => {
-<<<<<<< HEAD
     if (!hasFetchedLocation.current) {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -52,25 +47,6 @@ const LocationProvider = ({ children }) => {
         setError("Geolocation is not supported by this browser.");
         console.error("Geolocation is not supported by this browser.");
       }
-=======
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          setLocation({ lat, lon });
-
-          getZipcode(lat, lon);
-        },
-        (err) => {
-          setError(err.message);
-          console.error("Error getting location:", err);
-        }
-      );
-    } else {
-      setError("Geolocation is not supported by this browser.");
-      console.error("Geolocation is not supported by this browser.");
->>>>>>> babe221 (zip code fix)
     }
   }, []);
 
