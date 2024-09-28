@@ -63,7 +63,7 @@ const Layout = () => {
           <MapComponent />
         </div>
 
-        <div className="w-1/3 h-full p-4 overflow-y-auto">
+        <div className="w-1/3 h-screen p-4 overflow-y-auto">
           <Outlet />
         </div>
       </div>

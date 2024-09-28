@@ -18,7 +18,7 @@ const Representative = () => {
   return (
     <div className="repres">
       <Link to="/" className="back">
-        <IoMdArrowRoundBack />
+        <IoMdArrowRoundBack className="text-xl"/>
       </Link>
       <h1 className="text-3xl font-bold mb-4 pt-2">{params.name}</h1>
       <h2 className="text-lg mb-2">{params.position}</h2>
