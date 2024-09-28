@@ -6,7 +6,7 @@ const Election = () => {
   const [election, setElection] = useState(null);
   useEffect(() => {
     const API_KEY = import.meta.env.VITE_CIVIC_API_KEY;
-    const address = "1930 SW 145th Ave, Miramar, FL 33027";
+    const address = "33027";
     const URL =
       "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=" +
       address +

@@ -41,7 +41,9 @@ const Layout = () => {
                   Lat: {location.lat}, Lon: {location.lon}
                 </p>
               ) : (
-                <p className="text-sm">{error ? error : "Loading location..."}</p>
+                <p className="text-sm">
+                  {error ? error : "Loading location..."}
+                </p>
               )}
             </div>
           </div>
