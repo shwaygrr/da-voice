@@ -36,7 +36,7 @@ const Election = () => {
       {election ? (
         <div>
           <Link to="/elections" className="back">
-            <IoMdArrowRoundBack />
+            <IoMdArrowRoundBack className="text-xl"/>
           </Link>
           <h1 className="text-3xl font-bold mb-4 pt-2">{election.election.name}</h1>
           <h2 className="text-lg mb-2">{election.election.electionDay}</h2>
