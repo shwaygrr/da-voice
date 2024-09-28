@@ -11,8 +11,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
+          <Route index element={<RepresList />} />
           <Route path="test" element={<Representative />} />
-          <Route path="test1" element={<RepresList />} />
         </Route>
       </Routes>
     </BrowserRouter>
