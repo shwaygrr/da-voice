@@ -70,7 +70,9 @@ const Layout = () => {
           <div className="relative flex items-center justify-between h-16">
             <div className="flex-shrink-0">
               <Link to="/">
-                <h1 className="text-white font-bold text-xl">Da Voice</h1>
+              <h1 className="text-white font-bold text-xl border-b-2 border-t-2 border-white pb-1 shadow-lg">
+                Da Voice
+              </h1>
               </Link>
             </div>
             <div className="flex space-x-4 mx-auto">
