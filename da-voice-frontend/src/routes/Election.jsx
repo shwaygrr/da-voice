@@ -11,29 +11,6 @@ const Election = () => {
   const { zipcode } = useLocation()
 
   useEffect(() => {
-    const fetchSummary = async () => {
-      try {
-        const response = await fetch("http://localhost:8000/api/summarize-election", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ election: election.election.name }),
-        });
-  
-        if (!response.ok) {
-          throw new Error("Failed to fetch bio");
-        }
-  
-        const data = await response.json();
-        setSummary(data.bio);
-      } catch (err) {
-        throw new Error("Failed to fetch bio: " + err.message); // Handle error
-      };
-    }
-    
-    fetchSummary()
-
     handleExpandSidebar();
     const API_KEY = import.meta.env.VITE_CIVIC_API_KEY;
     const URL =
@@ -58,6 +35,31 @@ const Election = () => {
     };
     fetchData();
   }, [id]);
+
+  useEffect(() => {
+    const fetchSummary = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/api/summarize-election", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ election: election.election.name }),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to fetch bio");
+        }
+  
+        const data = await response.json();
+        setSummary(data.bio);
+      } catch (err) {
+        throw new Error("Failed to fetch bio: " + err.message); // Handle error
+      };
+    }
+    
+    fetchSummary()
+  }, [election])
 
   return (
     <div>
