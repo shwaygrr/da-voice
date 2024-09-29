@@ -8,6 +8,7 @@ const Representative = () => {
   const { handleExpandSidebar, handleCollapseSidebar } = useOutletContext();
   const queryParams = new URLSearchParams(location.search);
   const [articles, setArticles] = useState(null);
+  const [bio, setBio] = useState("")
   const params = {
     name: queryParams.get("name"),
     position: queryParams.get("position"),
@@ -17,7 +18,33 @@ const Representative = () => {
     address: queryParams.get("address"),
   };
 
+
   useEffect(() => {
+    const fetchBio = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/api/bio", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name: params.name }),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to fetch bio");
+        }
+  
+        const data = await response.json();
+        setBio(data.bio);
+      } catch (err) {
+        throw new Error("Failed to fetch bio: " + err.message); // Handle error
+      };
+    }
+
+    if (bio.length === 0) {
+      fetchBio()
+    }
+
     handleExpandSidebar();
     const API_KEY = import.meta.env.VITE_FASTAPI_KEY;
 
@@ -64,7 +91,20 @@ const Representative = () => {
       <h2 className="text-lg font-semibold mt-4">Address</h2>
       <p>{params.address}</p>
       <div className="mt-4">
-        <h1 className="text-3xl font-bold mb-4 pt-2">Articles</h1>
+        <h1 className="text-lg font-bold mb-4 pt-2">Biography</h1>
+        {bio.length !== 0 ? (
+          <div>
+            <p>{bio}</p>
+            <p className="text-sm text-gray-500 mt-2">
+              *This biography was generated using ChatGPT and may not be fully accurate. Please verify the information.
+            </p>
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
+      <div className="mt-4">
+        <h1 className="text-lg font-bold mb-4 pt-2">Articles</h1>
         {articles ? (
           articles.map((article, index) => (
             <InfoArticle
