@@ -16,7 +16,7 @@ const Layout = () => {
 
   return (
     <div className="flex flex-col h-screen">
-      <nav className="bg-gray-800">
+      <nav className="bg-gray-800 fixed w-full top-0 z-50">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16">
             <div className="flex-shrink-0">
@@ -58,8 +58,8 @@ const Layout = () => {
         </div>
       </nav>
 
-      <div className="flex flex-1">
-        <div className="w-2/3 h-full">
+      <div className="flex flex-1 pt-16">
+        <div className="w-2/3 h-full z-0">
           <MapComponent />
         </div>
 
@@ -68,39 +68,39 @@ const Layout = () => {
         </div>
       </div>
 
-      <div>
-        <h1 className="text-4xl font-bold mb-4" id="resources">
+      <div className="w-full p-4">
+        <h1 className="text-4xl font-bold mb-8 text-center pt-24" id="resources">
           More Resources
         </h1>
         <InfoArticle
-          url="https://education.nationalgeographic.org/resource/why-voting-important/"
-          image="https://images.nationalgeographic.org/image/upload/t_edhub_resource_key_image/v1638892378/EducationHub/photos/americans-voting.jpg"
-          headline="Why Voting is Important"
-          content="“Voting is your civic duty.” This is a pretty common sentiment, especially each November as Election Day approaches. But what does it really mean? And what does it mean for Americans in particular?“"
+          url="https://news.fiu.edu/2023/no-one-cares-about-local-elections-heres-why-you-should"
+          image="https://nchschant.com/wp-content/uploads/2020/12/R.L-The-Importance-of-Voting-in-Local-Elections-Cover-Photo.jpg"
+          headline="Why should I vote in local elections?"
+          content="“Local elections affect us through everything that has to do with our daily lives. Municipalities generally take responsibility for parks and recreation services, police and fire departments, housing services, emergency medical services, municipal courts and transportation services.“"
         />
         <InfoArticle
-          url="https://www.scientificamerican.com/article/why-we-must-protect-voting-rights/"
-          image="https://static.scientificamerican.com/sciam/cache/file/C709F015-39EE-4E63-A7DDC0F1A18132C7_source.jpg?w=900"
-          headline="Why We Must Protect Voting Rights"
-          content="“Evidence shows they boost suffrage, not fraud“"
+          url="https://www.whitehouse.gov/cea/written-materials/2021/08/16/the-importance-of-protecting-voting-rights-for-voter-turnout-and-economic-well-being/"
+          image="https://www.lwv.org/sites/default/files/53173586778_6326ebc686_k.jpg"
+          headline="The Importance of Protecting Voting Rights for Voter Turnout and Economic Well-Being"
+          content="“Voters’ waiting times in predominately Black neighborhoods are already 29 percent longer than in predominately white neighborhoods. In this blog post, we outline research that has been done on the impact of voting rights on election turnout and on the economic well-being of Black Americans.“"
         />
         <InfoArticle
-          url="https://www.usa.gov/how-to-vote"
-          image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.wixstatic.com%2Fmedia%2Ff64377_97a05f5aed264b86a7010dc169ca5bef~mv2_d_4640_3018_s_4_2.jpg%2Fv1%2Ffill%2Fw_1920%2Ch_1249%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Ff64377_97a05f5aed264b86a7010dc169ca5bef~mv2_d_4640_3018_s_4_2.jpg&f=1&nofb=1&ipt=3d61637cb4151b6dc57a178b15ba32be4ccad09e42889d940a6a42e7142022b5&ipo=images"
-          headline=" How, when, and where to vote "
-          content="“See if you are eligible to vote absentee, early, or on Election Day. Get voter ID requirements. “"
+          url="https://apiavote.org/how-to-vote/why-vote/"
+          image="https://apiavote.org/wp-content/uploads/home-shape-elections.jpg"
+          headline="Why Vote"
+          content="“Voting gives you the power to create positive change for your community and determine a better quality of life for you and your family. Voting together with your neighbors, family, and friends ensures that your shared values and issues are prioritized and that you play a key role in choosing who represents us, and where government funding and resources will go.“"
         />
         <InfoArticle
-          url="https://www.usa.gov/voter-research"
-          image="https://www.futurity.org/wp/wp-content/uploads/2018/12/australian_voters_1600.jpg"
-          headline="Decide who to vote for "
-          content="“Learn how to make informed choices by using voter guides and sample ballots to research candidates. “"
+          url="https://www.carnegie.org/our-work/article/voting-rights-timeline/"
+          image="https://media.carnegie.org/filer_public_thumbnails/filer_public/20/40/204040de-5b62-4f88-ab3b-43557a7318ef/gettyimages-51506194.jpg__1440x810_q85_crop_subsampling-2_upscale.jpg"
+          headline="Voting Rights: A Short History"
+          content="“The struggle for equal voting rights dates to the earliest days of U.S. history. Now, after a period of bipartisan efforts to expand enfranchisement, Americans once again face new obstacles to voting.“"
         />
         <InfoArticle
-          url="https://www.usa.gov/voting-laws"
-          image="https://media.rnztools.nz/rnz/image/upload/s--jyfDx5HL--/ar_16:10,c_fill,f_auto,g_auto,q_auto,w_1050/v1694944462/4MLBXTV_vote2_jpg"
-          headline="Voting and election laws"
-          content="“Learn how campaign contribution limits, accessibility rules, and other federal election laws help protect your voting rights and the election process. “"
+          url="https://www.vote.org/"
+          image="https://www.ppic.org/wp-content/uploads/2023/05/four-people-voting.jpg"
+          headline="Everything You Need to Vote"
+          content="“Register to vote. Check your registration status. Get your absentee ballot. Fast, free, easy, secure, nonpartisan.“"
         />
       </div>
 
