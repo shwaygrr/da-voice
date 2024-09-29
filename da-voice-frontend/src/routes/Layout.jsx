@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "../contexts/location";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import MapComponent from "../components/MapComponent";
 import InfoArticle from "../components/InfoArticle";
 
@@ -9,6 +9,8 @@ const Layout = () => {
   const { location, zipcode, error, setZipcode } = useLocation();
   const [isExpanded, setIsExpanded] = useState(false);
   const navigate = useNavigate();
+
+  const resourcesRef = useRef(null);
 
   const handleZipcodeChange = (e) => {
     const newZipcode = e.target.value;
@@ -26,6 +28,17 @@ const Layout = () => {
     navigate(-1);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const scrollToResources = (e) => {
+    e.preventDefault(); // Prevent default anchor behavior
+    if (resourcesRef.current) {
+      resourcesRef.current.scrollIntoView({ behavior: "smooth" }); // Scroll to resources section smoothly
+    }
+  };
+
   return (
     <div className="flex flex-col h-screen">
       <nav className="bg-gray-800 fixed w-full top-0 z-50">
@@ -37,18 +50,21 @@ const Layout = () => {
             <div className="flex space-x-4 mx-auto">
               <Link
                 to="/"
+                onClick={scrollToTop} 
                 className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
                 Representatives
               </Link>
               <Link
                 to="/elections"
+                onClick={scrollToTop}
                 className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
                 Elections
               </Link>
               <a
                 href="#resources"
+                onClick={scrollToResources} 
                 className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
                 Resources
@@ -80,8 +96,8 @@ const Layout = () => {
         </div>
       </div>
 
-      <div className="w-full p-4">
-        <h1 className="text-4xl font-bold mb-8 text-center pt-24" id="resources">
+      <div ref={resourcesRef} className="w-full p-4">
+        <h1 className="text-4xl font-bold mb-8 text-center pt-20" id="resources">
           More Resources
         </h1>
         <InfoArticle
