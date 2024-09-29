@@ -59,7 +59,9 @@ const RepresList = () => {
       }
     };
 
-    fetchData();
+    if (zipcode.length === 5) {
+      fetchData();
+    }
   }, [zipcode]);
 
   return (

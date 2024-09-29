@@ -7,8 +7,8 @@ const LocationProvider = ({ children }) => {
   const [zipcode, setZipcode] = useState("");
   const [error, setError] = useState(null);
 
+  console.log(location)
   const getZipcode = async (lat, lon) => {
-
     try {
       const response = await fetch(
         `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`
