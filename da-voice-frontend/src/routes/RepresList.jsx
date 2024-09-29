@@ -71,7 +71,7 @@ const RepresList = () => {
         ? reps.map((rep) => (
             <Link
               key={rep.id}
-              to={`/representatives?name=${encodeURIComponent(
+              to={`/representative?name=${encodeURIComponent(
                 rep.name
               )}&position=${encodeURIComponent(
                 rep.position
