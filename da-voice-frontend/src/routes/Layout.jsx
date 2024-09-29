@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import { useLocation } from "../contexts/location";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
-import { MdOutlineHowToVote, MdOutlineWhereToVote } from "react-icons/md";
-import { LiaVoteYeaSolid } from "react-icons/lia";
+import { MdSpeakerNotes , MdPublic  } from "react-icons/md";
+import { FaPeopleArrows  } from "react-icons/fa";
 import MapComponent from "../components/MapComponent";
 import InfoArticle from "../components/InfoArticle";
+import { RiCommunityLine } from "react-icons/ri";
+import { GiPublicSpeaker } from "react-icons/gi";
 
 const Layout = () => {
   const { location, zipcode, error, setZipcode } = useLocation();
@@ -47,7 +49,7 @@ const Layout = () => {
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16">
             <div className="flex-shrink-0">
-              <h1 className="text-white font-bold text-xl">DaVoice</h1>
+              <h1 className="text-white font-bold text-xl">Da Voice</h1>
             </div>
             <div className="flex space-x-4 mx-auto">
               <Link
@@ -72,16 +74,13 @@ const Layout = () => {
                 Resources
               </a>
             </div>
-            {/* <div className="hidden sm:block text-gray-300">
-              {zipcode}
-            </div> */}
             <div>
-              <label className="text-white">Zip Code: </label>
+              <label className="text-white">Zip Code </label>
               <input
                 value={zipcode}
                 onChange={handleZipcodeChange}
                 placeholder="Enter Zip Code"
-                className="px-1 rounded-sm"
+                className="px-1.5 rounded-sm"
               />
             </div>
           </div>
@@ -89,33 +88,33 @@ const Layout = () => {
       </nav>
 
       <div className="min-h-screen pt-12 flex flex-col justify-between items-center bg-gray-900 text-white">
-        <div className="text-center mt-12">
-          <h1 className="text-5xl font-bold mb-4">Welcome to DaVoice</h1>
+        <div className="text-center mt-20">
+          <h1 className="text-5xl font-bold mb-4">Educating for Representation, Leading to Change</h1>
           <p className="text-xl mb-6">Stay informed about your local elections and representatives.</p>
 
           <div className="flex justify-center space-x-8 mt-12 pt-24">
             <div className="text-center max-w-xs">
               <div>
-                <LiaVoteYeaSolid className="text-6xl mx-auto" />
+                <GiPublicSpeaker  className="text-6xl mx-auto" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Your Vote Matters</h3>
-              <p className="text-gray-400">Every vote counts, and your voice shapes the future of your community.</p>
+              <h3 className="text-lg font-semibold mb-2">Your Voice, Your Future</h3>
+              <p className="text-gray-400">Make every vote count to amplify the voices of underrepresented communities</p>
             </div>
 
             <div className="text-center max-w-xs">
               <div>
-                <MdOutlineWhereToVote className="text-6xl mx-auto pb-2" />
+                <FaPeopleArrows className="text-6xl mx-auto pb-2" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Early Voting</h3>
-              <p className="text-gray-400">Early voting helps avoid crowds and ensures your vote is cast early.</p>
+              <h3 className="text-lg font-semibold mb-2">Empower Your Community</h3>
+              <p className="text-gray-400">Early voting makes your voice heard and helps build stronger representation for marginalized groups.</p>
             </div>
 
             <div className="text-center max-w-xs">
               <div>
-                <MdOutlineHowToVote className="text-6xl mx-auto pb-1" />
+                <RiCommunityLine className="text-6xl mx-auto pb-1" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Election Safety</h3>
-              <p className="text-gray-400">Election officials work hard to ensure your vote is safe and secure.</p>
+              <h3 className="text-lg font-semibold mb-2">Local Elections Matter</h3>
+              <p className="text-gray-400">Local elections impact your life more directly than national ones, yet minority representation is lacking.</p>
             </div>
           </div>
         </div>
@@ -176,7 +175,12 @@ const Layout = () => {
       </div>
 
       <footer className="p-4 bg-gray-200 text-center">
-        <p>Additional Information or Footer Content</p>
+        <p className="text-gray-600">
+          Empowering minorities to make informed choices and gain representation in local government.
+        </p>
+        <p className="text-gray-500">
+          © 2024 GCT Software. All rights reserved.
+        </p>
       </footer>
     </div>
   );
