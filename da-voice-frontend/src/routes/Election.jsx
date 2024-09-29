@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useOutletContext } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useLocation } from "../contexts/location";
 
 const Election = () => {
   const { id } = useParams();
+  const { handleExpandSidebar, handleCollapseSidebar } = useOutletContext();
   const [election, setElection] = useState(null);
   const { zipcode } = useLocation()
 
   useEffect(() => {
+    handleExpandSidebar();
     const API_KEY = import.meta.env.VITE_CIVIC_API_KEY;
     const URL =
       "https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?address=" +
@@ -37,8 +39,8 @@ const Election = () => {
     <div>
       {election ? (
         <div>
-          <Link to="/elections" className="back">
-            <IoMdArrowRoundBack className="text-xl"/>
+          <Link to="/elections" className="back" onClick={handleCollapseSidebar}>
+            <IoMdArrowRoundBack className="text-xl" />
           </Link>
           <h1 className="text-3xl font-bold mb-4 pt-2">{election.election.name}</h1>
           <h2 className="text-lg mb-2">{election.election.electionDay}</h2>

@@ -1,17 +1,29 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "../contexts/location";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import MapComponent from "../components/MapComponent";
 import InfoArticle from "../components/InfoArticle";
 
 const Layout = () => {
   const { location, zipcode, error, setZipcode } = useLocation();
+  const [isExpanded, setIsExpanded] = useState(false);
+  const navigate = useNavigate();
 
   const handleZipcodeChange = (e) => {
     const newZipcode = e.target.value;
     if (newZipcode.length <= 5) {
       setZipcode(newZipcode);
     }
+  };
+
+  const handleExpandSidebar = () => {
+    setIsExpanded(true);
+  };
+
+  const handleCollapseSidebar = () => {
+    setIsExpanded(false);
+    navigate(-1);
   };
 
   return (
@@ -59,12 +71,12 @@ const Layout = () => {
       </nav>
 
       <div className="flex flex-1 pt-16">
-        <div className="w-2/3 h-full z-0">
+        <div className={`z-0 h-full transition-all duration-700 ease-out ${isExpanded ? "w-1/3" : "w-2/3"}`}>
           <MapComponent />
         </div>
 
-        <div className="w-1/3 h-screen p-4 overflow-y-auto">
-          <Outlet />
+        <div className={`h-screen p-4 overflow-y-auto transition-all duration-700 ease-out ${isExpanded ? 'w-2/3' : 'w-1/3'}`}>
+          <Outlet context={{ handleExpandSidebar, handleCollapseSidebar }}/>
         </div>
       </div>
 
