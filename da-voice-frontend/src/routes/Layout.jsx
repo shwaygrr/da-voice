@@ -134,7 +134,7 @@ const Layout = () => {
         </h1>
         <InfoArticle
           url="https://theconversation.com/nonwhite-people-are-drastically-underrepresented-in-local-government-212318"
-          image="https://theconversation.com/images/152338/original/image-article-152338.jpg"
+          image="https://images.theconversation.com/files/571298/original/file-20240124-27-zt9n4k.jpg?ixlib=rb-4.1.0&rect=35%2C35%2C5955%2C3952&q=20&auto=format&w=320&fit=clip&dpr=2&usm=12&cs=strip"
           headline="Nonwhite People Are Drastically Underrepresented in Local Government"
           content="This article discusses the significant underrepresentation of nonwhite individuals in local government and its implications for communities."
         />
