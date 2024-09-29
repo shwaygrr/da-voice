@@ -7,9 +7,33 @@ const Election = () => {
   const { id } = useParams();
   const { handleExpandSidebar, handleCollapseSidebar } = useOutletContext();
   const [election, setElection] = useState(null);
+  const [summary, setSummary] = useState("")
   const { zipcode } = useLocation()
 
   useEffect(() => {
+    const fetchSummary = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/api/summarize-election", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ election: election.election.name }),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to fetch bio");
+        }
+  
+        const data = await response.json();
+        setSummary(data.bio);
+      } catch (err) {
+        throw new Error("Failed to fetch bio: " + err.message); // Handle error
+      };
+    }
+    
+    fetchSummary()
+
     handleExpandSidebar();
     const API_KEY = import.meta.env.VITE_CIVIC_API_KEY;
     const URL =
@@ -68,6 +92,20 @@ const Election = () => {
           <a href={election.state[0].electionAdministrationBody.ballotInfoUrl} className="block text-blue-500 hover:underline">
             <p>Ballot Info</p>
           </a>
+
+          <div className="mt-4">
+        <h1 className="text-lg font-bold mb-4 pt-2">Election Summary</h1>
+          {summary !== 0 ? (
+            <div>
+              <p>{summary}</p>
+              <p className="text-sm text-gray-500 mt-2">
+                *This biography was generated using ChatGPT and may not be fully accurate. Please verify the information.
+              </p>
+            </div>
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
         </div>
       ) : null}
     </div>
