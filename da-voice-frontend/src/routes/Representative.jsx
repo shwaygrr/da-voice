@@ -84,7 +84,7 @@ const Representative = () => {
       <h2 className="text-lg mb-2">{params.position}</h2>
       <h2 className="text-lg mb-2">{params.party}</h2>
 
-      <a href={params.website} className="block text-blue-500 hover:underline">
+      <a href={params.website} target="_blank" className="block text-blue-500 hover:underline">
         <p>Website</p>
       </a>
       <p className="mt-2">{params.phone}</p>

@@ -76,6 +76,7 @@ const Election = () => {
               election.state[0].electionAdministrationBody
                 .electionRegistrationUrl
             }
+            target="_blank"
             className="block text-blue-500 hover:underline"
           >
             <p>Register Here</p>
@@ -86,12 +87,13 @@ const Election = () => {
               election.state[0].electionAdministrationBody
                 .votingLocationFinderUrl
             }
+            target="_blank"
             className="block text-blue-500 hover:underline"
           >
             <p>Voting Locations</p>
           </a>
 
-          <a href={election.state[0].electionAdministrationBody.ballotInfoUrl} className="block text-blue-500 hover:underline">
+          <a href={election.state[0].electionAdministrationBody.ballotInfoUrl} target="_blank" className="block text-blue-500 hover:underline">
             <p>Ballot Info</p>
           </a>
 
