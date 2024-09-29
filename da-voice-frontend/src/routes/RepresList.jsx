@@ -66,7 +66,7 @@ const RepresList = () => {
 
   return (
     <div className="represList">
-      <h1 className="text-2xl font-bold mb-4">List of Representatives</h1>
+      <h1 className="text-2xl font-bold mb-4">Representatives</h1>
       {reps
         ? reps.map((rep) => (
             <Link
