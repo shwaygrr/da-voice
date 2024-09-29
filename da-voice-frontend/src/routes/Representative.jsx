@@ -22,7 +22,7 @@ const Representative = () => {
   useEffect(() => {
     const fetchBio = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/bio", {
+        const response = await fetch(`${import.meta.env.VITE_BE_URL}/api/bio`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

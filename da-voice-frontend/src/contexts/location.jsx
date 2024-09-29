@@ -7,7 +7,6 @@ const LocationProvider = ({ children }) => {
   const [zipcode, setZipcode] = useState("");
   const [error, setError] = useState(null);
 
-  console.log(location)
   const getZipcode = async (lat, lon) => {
     try {
       const response = await fetch(
@@ -44,8 +43,6 @@ const LocationProvider = ({ children }) => {
       console.error("Geolocation is not supported by this browser.");
     }
   }, [navigator]);
-
-  console.log(zipcode)
 
   return (
     <LocationContext.Provider value={{ location, zipcode, setZipcode, setLocation, error }}>
