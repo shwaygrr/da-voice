@@ -1,10 +1,11 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useOutletContext } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import InfoArticle from "../components/InfoArticle";
 import { useEffect, useState } from "react";
 
 const Representative = () => {
   const location = useLocation();
+  const { handleExpandSidebar, handleCollapseSidebar } = useOutletContext();
   const queryParams = new URLSearchParams(location.search);
   const [articles, setArticles] = useState(null);
   const params = {
@@ -17,6 +18,7 @@ const Representative = () => {
   };
 
   useEffect(() => {
+    handleExpandSidebar();
     const API_KEY = import.meta.env.VITE_FASTAPI_KEY;
 
     const URL =
@@ -48,7 +50,7 @@ const Representative = () => {
 
   return (
     <div className="repres">
-      <Link to="/" className="back">
+      <Link to="/" className="back" onClick={handleCollapseSidebar}>
         <IoMdArrowRoundBack className="text-xl" />
       </Link>
       <h1 className="text-3xl font-bold mb-4 pt-2">{params.name}</h1>
