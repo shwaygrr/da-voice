@@ -48,7 +48,7 @@ const LocationProvider = ({ children }) => {
   console.log(zipcode)
 
   return (
-    <LocationContext.Provider value={{ location, zipcode, setZipcode, error }}>
+    <LocationContext.Provider value={{ location, zipcode, setZipcode, setLocation, error }}>
       {children}
     </LocationContext.Provider>
   );
