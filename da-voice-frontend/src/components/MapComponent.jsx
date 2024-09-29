@@ -21,7 +21,7 @@ const UpdateMapCenter = ({ location }) => {
   useEffect(() => {
     if (location.lat && location.lon) {
       map.setView([location.lat, location.lon], map.getZoom());
-    } 
+    }
   }, [location, map]);
 
   return null;
@@ -44,6 +44,8 @@ const MapComponent = () => {
         const lat = parseFloat(data[0].lat);
         const lon = parseFloat(data[0].lon);
         setLocation({ lat, lon });
+        const locationName = await getCityAndState(lat, lon);
+        setAddress(locationName);
       }
     } catch (err) {
       console.error("Error fetching coordinates from zip code:", err);
@@ -86,6 +88,7 @@ const MapComponent = () => {
         (error) => {
           console.error("Error getting location:", error);
           setLocation(defaultLocation);
+          setAddress("New York, NY");
           setIsGeolocationUsed(true);
         }
       );
