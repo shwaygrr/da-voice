@@ -39,7 +39,7 @@ const Election = () => {
   useEffect(() => {
     const fetchSummary = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/summarize-election", {
+        const response = await fetch(`${import.meta.env.VITE_BE_URL}/api/summarize-election`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
