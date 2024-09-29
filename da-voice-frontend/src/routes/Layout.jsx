@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useLocation } from "../contexts/location";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
+import { MdOutlineHowToVote, MdOutlineWhereToVote } from "react-icons/md";
+import { LiaVoteYeaSolid } from "react-icons/lia";
 import MapComponent from "../components/MapComponent";
 import InfoArticle from "../components/InfoArticle";
 
@@ -33,9 +35,9 @@ const Layout = () => {
   };
 
   const scrollToResources = (e) => {
-    e.preventDefault(); // Prevent default anchor behavior
+    e.preventDefault();
     if (resourcesRef.current) {
-      resourcesRef.current.scrollIntoView({ behavior: "smooth" }); // Scroll to resources section smoothly
+      resourcesRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -85,6 +87,47 @@ const Layout = () => {
           </div>
         </div>
       </nav>
+
+      <div className="min-h-screen pt-12 flex flex-col justify-between items-center bg-gray-900 text-white">
+        <div className="text-center mt-12">
+          <h1 className="text-5xl font-bold mb-4">Welcome to DaVoice</h1>
+          <p className="text-xl mb-6">Stay informed about your local elections and representatives.</p>
+
+          <div className="flex justify-center space-x-8 mt-12 pt-24">
+            <div className="text-center max-w-xs">
+              <div>
+                <LiaVoteYeaSolid className="text-6xl mx-auto" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Your Vote Matters</h3>
+              <p className="text-gray-400">Every vote counts, and your voice shapes the future of your community.</p>
+            </div>
+
+            <div className="text-center max-w-xs">
+              <div>
+                <MdOutlineWhereToVote className="text-6xl mx-auto pb-2" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Early Voting</h3>
+              <p className="text-gray-400">Early voting helps avoid crowds and ensures your vote is cast early.</p>
+            </div>
+
+            <div className="text-center max-w-xs">
+              <div>
+                <MdOutlineHowToVote className="text-6xl mx-auto pb-1" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Election Safety</h3>
+              <p className="text-gray-400">Election officials work hard to ensure your vote is safe and secure.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-12">
+          <button
+            className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-full transition duration-300"
+          >
+            Get Started
+          </button>
+        </div>
+      </div>
 
       <div className="flex flex-1 pt-16">
         <div className={`z-0 h-full transition-all duration-700 ease-out ${isExpanded ? "w-1/3" : "w-2/3"}`}>
