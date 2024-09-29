@@ -2,12 +2,10 @@ import { Link } from "react-router-dom";
 import { useLocation } from "../contexts/location";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
-import { MdSpeakerNotes , MdPublic  } from "react-icons/md";
-import { FaPeopleArrows  } from "react-icons/fa";
 import MapComponent from "../components/MapComponent";
 import InfoArticle from "../components/InfoArticle";
-import { RiCommunityLine } from "react-icons/ri";
-import { GiPublicSpeaker } from "react-icons/gi";
+import Home from "./Home"
+
 
 const Layout = () => {
   const { location, zipcode, error, setZipcode } = useLocation();
@@ -15,6 +13,7 @@ const Layout = () => {
   const navigate = useNavigate();
 
   const resourcesRef = useRef(null);
+  const mapSectionRef = useRef(null);
 
   const handleZipcodeChange = (e) => {
     const newZipcode = e.target.value;
@@ -43,6 +42,27 @@ const Layout = () => {
     }
   };
 
+  const scrollToMapSection = (e) => {
+    e.preventDefault();
+    if (mapSectionRef.current) {
+      mapSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleRepresentativesClick = (e) => {
+    scrollToMapSection(e);
+    setTimeout(() => {
+      navigate("/");
+    }, 100);
+  };
+
+  const handleElectionsClick = (e) => {
+    scrollToMapSection(e);
+    setTimeout(() => {
+      navigate("/elections");
+    }, 100);
+  };
+
   return (
     <div className="flex flex-col h-screen">
       <nav className="bg-gray-800 fixed w-full top-0 z-50">
@@ -59,11 +79,18 @@ const Layout = () => {
                 onClick={scrollToTop} 
                 className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
+                Home
+              </Link>
+              <Link
+                to="/representative"
+                onClick={handleRepresentativesClick}
+                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
                 Representatives
               </Link>
               <Link
                 to="/elections"
-                onClick={scrollToTop}
+                onClick={handleElectionsClick}
                 className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
                 Elections
@@ -89,48 +116,9 @@ const Layout = () => {
         </div>
       </nav>
 
-      <div className="min-h-screen pt-12 flex flex-col justify-between items-center bg-gray-900 text-white">
-        <div className="text-center mt-20">
-          <h1 className="text-5xl font-bold mb-4">Educating for Representation, Leading to Change</h1>
-          <p className="text-xl mb-6">Stay informed about your local elections and representatives.</p>
+      <Home scrollToMapSection={scrollToMapSection} />
 
-          <div className="flex justify-center space-x-8 mt-12 pt-24">
-            <div className="text-center max-w-xs">
-              <div>
-                <GiPublicSpeaker  className="text-6xl mx-auto" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Your Voice, Your Future</h3>
-              <p className="text-gray-400">Make every vote count to amplify the voices of underrepresented communities</p>
-            </div>
-
-            <div className="text-center max-w-xs">
-              <div>
-                <FaPeopleArrows className="text-6xl mx-auto pb-2" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Empower Your Community</h3>
-              <p className="text-gray-400">Early voting makes your voice heard and helps build stronger representation for marginalized groups.</p>
-            </div>
-
-            <div className="text-center max-w-xs">
-              <div>
-                <RiCommunityLine className="text-6xl mx-auto pb-1" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Local Elections Matter</h3>
-              <p className="text-gray-400">Local elections impact your life more directly than national ones, yet minority representation is lacking.</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="mb-12">
-          <button
-            className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-full transition duration-300"
-          >
-            Get Started
-          </button>
-        </div>
-      </div>
-
-      <div className="flex flex-1 pt-16">
+      <div ref={mapSectionRef} className="flex flex-1 pt-16">
         <div className={`z-0 h-full transition-all duration-700 ease-out ${isExpanded ? "w-1/3" : "w-2/3"}`}>
           <MapComponent />
         </div>
