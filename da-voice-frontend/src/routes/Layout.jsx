@@ -49,7 +49,9 @@ const Layout = () => {
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16">
             <div className="flex-shrink-0">
-              <h1 className="text-white font-bold text-xl">Da Voice</h1>
+              <Link to="/">
+                <h1 className="text-white font-bold text-xl">Da Voice</h1>
+              </Link>
             </div>
             <div className="flex space-x-4 mx-auto">
               <Link
@@ -143,34 +145,40 @@ const Layout = () => {
           More Resources
         </h1>
         <InfoArticle
+          url="https://theconversation.com/nonwhite-people-are-drastically-underrepresented-in-local-government-212318"
+          image="https://theconversation.com/images/152338/original/image-article-152338.jpg"
+          headline="Nonwhite People Are Drastically Underrepresented in Local Government"
+          content="This article discusses the significant underrepresentation of nonwhite individuals in local government and its implications for communities."
+        />
+        <InfoArticle
           url="https://news.fiu.edu/2023/no-one-cares-about-local-elections-heres-why-you-should"
           image="https://nchschant.com/wp-content/uploads/2020/12/R.L-The-Importance-of-Voting-in-Local-Elections-Cover-Photo.jpg"
-          headline="Why should I vote in local elections?"
-          content="“Local elections affect us through everything that has to do with our daily lives. Municipalities generally take responsibility for parks and recreation services, police and fire departments, housing services, emergency medical services, municipal courts and transportation services.“"
+          headline="Why Should I Vote in Local Elections?"
+          content="Local elections affect our daily lives, impacting services that matter to our communities."
         />
         <InfoArticle
           url="https://www.whitehouse.gov/cea/written-materials/2021/08/16/the-importance-of-protecting-voting-rights-for-voter-turnout-and-economic-well-being/"
           image="https://www.lwv.org/sites/default/files/53173586778_6326ebc686_k.jpg"
           headline="The Importance of Protecting Voting Rights for Voter Turnout and Economic Well-Being"
-          content="“Voters’ waiting times in predominately Black neighborhoods are already 29 percent longer than in predominately white neighborhoods. In this blog post, we outline research that has been done on the impact of voting rights on election turnout and on the economic well-being of Black Americans.“"
+          content="Research highlights the disparities in voting experiences for Black Americans and emphasizes the need for equitable voting rights."
         />
         <InfoArticle
           url="https://apiavote.org/how-to-vote/why-vote/"
           image="https://apiavote.org/wp-content/uploads/home-shape-elections.jpg"
           headline="Why Vote"
-          content="“Voting gives you the power to create positive change for your community and determine a better quality of life for you and your family. Voting together with your neighbors, family, and friends ensures that your shared values and issues are prioritized and that you play a key role in choosing who represents us, and where government funding and resources will go.“"
+          content="Voting empowers you to create change for your community and ensures your values are prioritized."
         />
         <InfoArticle
           url="https://www.carnegie.org/our-work/article/voting-rights-timeline/"
           image="https://media.carnegie.org/filer_public_thumbnails/filer_public/20/40/204040de-5b62-4f88-ab3b-43557a7318ef/gettyimages-51506194.jpg__1440x810_q85_crop_subsampling-2_upscale.jpg"
           headline="Voting Rights: A Short History"
-          content="“The struggle for equal voting rights dates to the earliest days of U.S. history. Now, after a period of bipartisan efforts to expand enfranchisement, Americans once again face new obstacles to voting.“"
+          content="A look at the historical struggle for voting rights and the ongoing challenges faced by underrepresented communities."
         />
         <InfoArticle
           url="https://www.vote.org/"
           image="https://www.ppic.org/wp-content/uploads/2023/05/four-people-voting.jpg"
           headline="Everything You Need to Vote"
-          content="“Register to vote. Check your registration status. Get your absentee ballot. Fast, free, easy, secure, nonpartisan.“"
+          content="A one-stop resource for registering to vote, checking your registration status, and accessing absentee ballots."
         />
       </div>
 
